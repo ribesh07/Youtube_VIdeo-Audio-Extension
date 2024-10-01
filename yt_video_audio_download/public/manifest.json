@@ -11,5 +11,9 @@
       "128": "favicon.ico"
     }
   },
-  "permissions": []
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ]
 }
