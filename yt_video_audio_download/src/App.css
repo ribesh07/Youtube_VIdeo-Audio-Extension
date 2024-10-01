@@ -9,6 +9,7 @@
   width: 400px;
   margin: auto;
   margin-top: 10px;
+  position: relative;
 }
 
 h1 {
@@ -59,8 +60,8 @@ button:disabled {
   position: fixed;
   top: 0;
   left: 0;
-  width: 400px;
-  /* height: 100%; */
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay */
   display: flex;
   flex-direction: column;

@@ -8,7 +8,7 @@ import axios from "axios";
 function App() {
   const [url, setUrl] = useState("");
   const [status, setStatus] = useState("");
-  const [type, setType] = useState("video");
+  // const [type, setType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleVideoDownload = async () => {
@@ -25,15 +25,13 @@ function App() {
       });
       return;
     }
-    setIsLoading(true);
-    setType("video");
     setStatus("Download started! Check the downloads folder.");
-    console.log("inside video :" + type);
+    // setType("video");
+    console.log("inside video :");
+    setIsLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:5000/download?url=${encodeURIComponent(
-          url
-        )}&type=${type}`
+        `http://localhost:5000/download?url=${encodeURIComponent(url)}`
       );
       console.log(response.data);
       setStatus(response.data.message);
@@ -61,15 +59,13 @@ function App() {
       });
       return;
     }
-    setType("audio");
-    setIsLoading(true);
-    console.log("inside audio :" + type);
+    // setType("audio");
     setStatus("Download started! Check the downloads folder.");
+    console.log("inside audio :");
+    setIsLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:5000/download?url=${encodeURIComponent(
-          url
-        )}&type=${type}`
+        `http://localhost:5000/downloadaudio?url=${encodeURIComponent(url)}`
       );
       console.log(response.data);
       setStatus(response.data.message);
@@ -80,19 +76,11 @@ function App() {
     } finally {
       setIsLoading(false);
     }
-
     console.log("Audio: " + url);
   };
 
   return (
     <div className="App">
-      {isLoading && (
-        <div className="loading-overlay">
-          <div className="spinner"></div>
-          <p>Processing download...</p>
-        </div>
-      )}
-
       <h1>Youtube Vide/Audio - guruRZ</h1>
       <input
         type="text"
@@ -102,6 +90,12 @@ function App() {
         disabled={isLoading}
       />
       <ToastContainer />
+      {isLoading && (
+        <div className="loading-overlay">
+          <div className="spinner"></div>
+          <p>Processing download...</p>
+        </div>
+      )}
       <div>
         <button onClick={handleVideoDownload} disabled={isLoading}>
           Video
